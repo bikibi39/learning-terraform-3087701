@@ -13,6 +13,9 @@ data "aws_ami" "app_ami" {
 
   owners = ["979382823631"] # Bitnami
 }
+  data "aws_vpc" "default" {
+    default = true
+}
 
 module "blog_vpc" {
   source = "terraform-aws-modules/vpc/aws"
@@ -20,7 +23,7 @@ module "blog_vpc" {
   name = "dev"
   cidr = "10.0.0.0/16"
 
-  azs             = ["us-west-2a","us-west-2b","us-west-2c"]
+  azs             = ["us-east-1a","us-east-1b","us-east-1c"]
   public_subnets  = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
 
 
